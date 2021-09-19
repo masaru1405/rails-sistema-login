@@ -1,0 +1,11 @@
+<h1>Welcome#index</h1>
+<p>Find me in app/views/welcome/index.html.erb</p>
+
+<p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+<% unless user_signed_in? %>
+   <%= link_to "Login", new_user_session_path %>
+<% else %>
+   <%= link_to "Profile", user_profile_index_path %>
+<% end %>
