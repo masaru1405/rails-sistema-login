@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_18_152354) do
+ActiveRecord::Schema.define(version: 2021_09_20_192815) do
+
+  create_table "admin_users", force: :cascade do |t|
+    t.boolean "is_admin"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_admin_users_on_user_id"
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,6 +30,20 @@ ActiveRecord::Schema.define(version: 2021_09_18_152354) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "user_infos", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "gender"
+    t.string "address"
+    t.string "cep"
+    t.string "state"
+    t.date "birthdate"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_infos_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,4 +58,6 @@ ActiveRecord::Schema.define(version: 2021_09_18_152354) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "admin_users", "users"
+  add_foreign_key "user_infos", "users"
 end

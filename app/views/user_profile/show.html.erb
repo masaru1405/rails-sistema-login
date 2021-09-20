@@ -1,0 +1,8 @@
+<h1>Show</h1>
+<p><%= @user.email %></p>
+<p>Tem privilégios administrativos: <%= @is_admin %></p>
+<p><%= link_to "Logout", destroy_admin_session_path, method: :delete %></p>
+
+<% if @is_admin %>
+   <p><%= link_to "Listar todos os usuários", user_profile_index_path %></p>
+<% end %>

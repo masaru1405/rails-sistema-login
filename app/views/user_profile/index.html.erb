@@ -5,5 +5,8 @@
 
 <%= link_to 'Welcome', root_path %>
 
-<p>Logado como: <strong><%= current_user.email %></strong></p>
-<p><%= link_to "Logout", destroy_admin_session_path, method: :delete %></p>
+<hr>
+<% @users.each do |user| %>
+   <p>Email: <%= user.email %> | Admin: <%= user.admin_user.is_admin %></p>
+<% end %>
+
